@@ -10,17 +10,19 @@ const App = () => {
     const theme = useState("darkblue");
     return (
         <StrictMode>
-            <ThemeContext.Provider value={theme}>
-                <BrowserRouter>
-                    <header>
-                        <Link to="/"> Adopt Me!</Link>
-                    </header>
-                    <Routes>
-                        <Route path="/details/:id" element={<Details />} />
-                        <Route path="/" element={<SearchParams />} />
-                    </Routes>
-                </BrowserRouter>
-            </ThemeContext.Provider>
+            <Suspense fallback={<h2>loading, be patient</h2>}>
+                <ThemeContext.Provider value={theme}>
+                    <BrowserRouter>
+                        <header>
+                            <Link to="/"> Adopt Me!</Link>
+                        </header>
+                        <Routes>
+                            <Route path="/details/:id" element={<Details />} />
+                            <Route path="/" element={<SearchParams />} />
+                        </Routes>
+                    </BrowserRouter>
+                </ThemeContext.Provider>
+            </Suspense>
         </StrictMode>
     );
 };
