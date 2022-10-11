@@ -1,11 +1,10 @@
-import React, { StrictMode, useState } from 'react'
+import React, { StrictMode, useState, lazy, Suspense } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
-import Pet from "./Pet"
-import SearchParams from "./SearchParams"
-import Details from './Details'
 import ThemeContext from './ThemeContext'
 
+const Details = lazy(() => import('./Details'))
+const SearchParams = lazy(() => import('./SearchParams'))
 
 const App = () => {
     const theme = useState("darkblue");
